@@ -1,10 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using webbanhangmvc.Models;
 using webbanhangmvc.ViewModels;
 using X.PagedList;
+using System.IO;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Text.RegularExpressions;
 
 namespace webbanhangmvc.Areas.Admin.Controllers
 {
@@ -13,22 +18,516 @@ namespace webbanhangmvc.Areas.Admin.Controllers
     [Route("admin/homeadmin")]
     public class HomeAdminController : Controller
     {
+        private readonly IRazorViewEngine _razorViewEngine;
         QlbanVaLiContext db = new QlbanVaLiContext();
+        public HomeAdminController(QlbanVaLiContext _db, IRazorViewEngine razorViewEngine)
+        {
+            db = _db;
+            _razorViewEngine = razorViewEngine;
+        }
         [Route("")]
         [Route("index")]
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("Username") != null)
+            var Username = HttpContext.Session.GetString("Username");
+            
+            if (Username != null)
             {
-                ViewBag.UserName = HttpContext.Session.GetString("Username");
-                ViewBag.ShowLogin = false; // Ẩn nút đăng nhập
+                ViewBag.UserName = Username;
+                ViewBag.ShowLogin = false;
             }
             else
             {
-                ViewBag.ShowLogin = true; // Hiển thị nút đăng nhập
-                return RedirectToAction("LoginAdmin", "HomeAdmin"); // Chuyển hướng người dùng đến trang đăng nhập nếu không phải là admin
+                ViewBag.ShowLogin = true;
+                return RedirectToAction("LoginAdmin", "HomeAdmin"); 
             }
+
+            DateTime startdate = DateTime.Now.AddDays(-30);
+            int tongdonhang= GetSoDonDatHang(startdate);
+            decimal tongTienBan = GetTongTienBan(startdate);
+            int LuongTruyCap = GetTruyCap(startdate);
+            ViewBag.TruyCap = LuongTruyCap;
+            ViewBag.TongTien = tongTienBan;
+            ViewBag.TongSoDonDatHang = tongdonhang;
             return View();
+        }
+
+        //[Route("Gettotal")]
+        //[HttpPost]
+        //public List<object> Gettotal()
+        //{
+        //    List<object> data = new List<object>();
+        //    DateTime startdate = DateTime.Now.AddDays(-30);
+        //    List<string> labels = new List<string>();
+        //    List<int> totalVisits = new List<int>();
+        //    List<int> totalOrders = new List<int>();
+        //    List<decimal> totalSales = new List<decimal>();
+
+        //    int cumulativeVisits = 0;
+        //    int cumulativeOrders = 0;
+        //    decimal cumulativeSales = 0;
+
+        //    for (int i = 0; i < 30; i++)
+        //    {
+        //        DateTime date = startdate.AddDays(i);
+        //        labels.Add(date.ToString("MM/dd/yy"));
+        //        int dailyVisits = GetTruyCap(date);
+        //        int dailyOrders = GetSoDonDatHang(date);
+        //        decimal dailySales = GetTongTienBan(date);
+
+        //        cumulativeVisits += dailyVisits;
+        //        cumulativeOrders += dailyOrders;
+        //        cumulativeSales += dailySales;
+
+        //        totalVisits.Add(cumulativeVisits);
+        //        totalOrders.Add(cumulativeOrders);
+        //        totalSales.Add(cumulativeSales);
+        //    }
+
+        //    data.Add(labels);
+        //    data.Add(totalVisits);
+        //    data.Add(totalOrders);
+        //    data.Add(totalSales);
+        //    return data;
+        //}
+
+        private int GetTruyCap(DateTime startDate)
+        {
+            int LuongTruyCap = 0;
+            using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
+            {
+                using (SqlCommand command = new SqlCommand("LuongTruyCap", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = startDate;
+
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        LuongTruyCap = Convert.ToInt32(result);
+                    }
+                }
+            }
+            return LuongTruyCap;
+        }
+        private int GetSoDonDatHang(DateTime startDate)
+        {
+            int tongdonhang = 0;
+            using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
+            {
+                using (SqlCommand command = new SqlCommand("SoDonDatHang", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = startDate;
+
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        tongdonhang = Convert.ToInt32(result);
+                    }
+                }
+            }
+            return tongdonhang;
+        }
+
+        private decimal GetTongTienBan(DateTime startDate)
+        {
+            decimal tongTienBan = 0;
+            using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
+            {
+                using (SqlCommand command = new SqlCommand("TongTien", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@StartDate", SqlDbType.DateTime).Value = startDate;
+
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        tongTienBan = Convert.ToDecimal(result);
+                    }
+                }
+            }
+            return tongTienBan;
+        }
+
+
+        [Route("ViewHeader")]
+        [HttpGet]
+        public async Task<IActionResult> ViewHeader()
+        {
+            var Username = HttpContext.Session.GetString("Username");
+
+            if (Username != null)
+            {
+                ViewBag.UserName = Username;
+                ViewBag.ShowLogin = false;
+            }
+            else
+            {
+                ViewBag.ShowLogin = true;
+                return RedirectToAction("LoginAdmin", "HomeAdmin");
+            }
+
+            var layoutFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "_LayoutOgani.cshtml");
+
+            string headerContent = "";
+            string cssLinks = "";
+            string jsLinks = "";
+
+            if (System.IO.File.Exists(layoutFilePath))
+            {
+                // Đọc nội dung từ tệp LayoutOgani.cshtml
+                string layoutContent = System.IO.File.ReadAllText(layoutFilePath);
+
+                // Tìm vị trí bắt đầu của thẻ <header> và kết thúc của thẻ </header>
+                int headerStartIndex = layoutContent.IndexOf("<header");
+                int headerEndIndex = layoutContent.IndexOf("</header>", headerStartIndex);
+
+                if (headerStartIndex != -1 && headerEndIndex != -1)
+                {
+                    // Trích xuất nội dung chỉ trong thẻ <header> và </header>
+                    headerContent = layoutContent.Substring(headerStartIndex, headerEndIndex - headerStartIndex + 9);
+                }
+
+                // Tìm và trích xuất các thẻ <link> và <script>
+                cssLinks = ExtractTags(layoutContent, "link", "rel=\"stylesheet\"");
+                jsLinks = ExtractTags(layoutContent, "script", "src");
+            }
+
+            var model = new LayoutViewModel
+            {
+                Header = headerContent,
+                CssLinks = cssLinks,
+                JsLinks = jsLinks
+            };
+            return View("ViewHeader", model);
+        }
+
+        private string ExtractTags(string content, string tagName, string attribute)
+        {
+            var matches = Regex.Matches(content, $@"<{tagName}[^>]*{attribute}[^>]*>", RegexOptions.IgnoreCase);
+            return string.Join("\n", matches.Cast<Match>().Select(m => m.Value));
+        }
+
+
+        [Route("EditLayout")]
+        [HttpGet]
+        public IActionResult EditLayout()
+        {
+            var Username = HttpContext.Session.GetString("Username");
+
+            if (Username != null)
+            {
+                ViewBag.UserName = Username;
+                ViewBag.ShowLogin = false;
+            }
+            else
+            {
+                ViewBag.ShowLogin = true;
+                return RedirectToAction("LoginAdmin", "HomeAdmin");
+            }
+
+            var layoutFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "_LayoutOgani.cshtml");
+
+            string headerContent = "";
+            if (System.IO.File.Exists(layoutFilePath))
+            {
+                string layoutContent = System.IO.File.ReadAllText(layoutFilePath);
+
+                int headerStartIndex = layoutContent.IndexOf("<header");
+                int headerEndIndex = layoutContent.IndexOf("</header>", headerStartIndex) + 9;
+
+                if (headerStartIndex != -1 && headerEndIndex != -1)
+                {
+                    headerContent = layoutContent.Substring(headerStartIndex, headerEndIndex - headerStartIndex);
+                }
+            }
+            var model = new LayoutViewModel { Header = headerContent };
+            return View(model);
+        }
+
+        [Route("EditLayout")]
+        [HttpPost]
+        public IActionResult EditLayout(LayoutViewModel model)
+        {
+
+            var layoutFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "_LayoutOgani.cshtml");
+
+            if (System.IO.File.Exists(layoutFilePath))
+            {
+                string layoutContent = System.IO.File.ReadAllText(layoutFilePath);
+
+                int headerStartIndex = layoutContent.IndexOf("<header");
+                int headerEndIndex = layoutContent.IndexOf("</header>", headerStartIndex) + 9;
+
+                if (headerStartIndex != -1 && headerEndIndex != -1)
+                {
+                    string newLayoutContent = layoutContent.Substring(0, headerStartIndex) +
+                                              model.Header +
+                                              layoutContent.Substring(headerEndIndex);
+
+                    System.IO.File.WriteAllText(layoutFilePath, newLayoutContent);
+
+                    //lưu vào csdl
+                        var layoutRecord = db.LayoutContents.FirstOrDefault(l => l.Section == "Header");
+                            layoutRecord = new LayoutContent { Section = "Header",
+                                Content = model.Header,
+                            UpdateTime=DateTime.Now};
+                            db.LayoutContents.Add(layoutRecord);
+                        db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index", "Admin");
+        }
+
+        [Route("ViewBody")]
+        [HttpGet]
+        public async Task<IActionResult> ViewBody()
+        {
+            var Username = HttpContext.Session.GetString("Username");
+
+            if (Username != null)
+            {
+                ViewBag.UserName = Username;
+                ViewBag.ShowLogin = false;
+            }
+            else
+            {
+                ViewBag.ShowLogin = true;
+                return RedirectToAction("LoginAdmin", "HomeAdmin");
+            }
+
+            var layoutFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "_LayoutOgani.cshtml");
+
+            string bodyContent = "";
+            string cssLinks = "";
+            string jsLinks = "";
+
+            if (System.IO.File.Exists(layoutFilePath))
+            {
+                // Đọc nội dung từ tệp LayoutOgani.cshtml
+                string layoutContent = System.IO.File.ReadAllText(layoutFilePath);
+
+                // Tìm vị trí bắt đầu của thẻ <body> và kết thúc của thẻ </body>
+                int bodyStartIndex = layoutContent.IndexOf("<body");
+                int bodyEndIndex = layoutContent.IndexOf("</body>", bodyStartIndex);
+
+                if (bodyStartIndex != -1 && bodyEndIndex != -1)
+                {
+                    // Trích xuất nội dung chỉ trong thẻ <body> và </body>
+                    bodyContent = layoutContent.Substring(bodyStartIndex, bodyEndIndex - bodyStartIndex + 7);
+                }
+
+                // Tìm và trích xuất các thẻ <link> và <script>
+                cssLinks = ExtractTags(layoutContent, "link", "rel=\"stylesheet\"");
+                jsLinks = ExtractTags(layoutContent, "script", "src");
+            }
+
+            var model = new LayoutViewModel
+            {
+                Body = bodyContent,
+                CssLinks = cssLinks,
+                JsLinks = jsLinks
+            };
+            return View("ViewBody", model);
+        }
+
+
+
+        [Route("EditBody")]
+        [HttpGet]
+        public IActionResult EditBody()
+        {
+            var Username = HttpContext.Session.GetString("Username");
+
+            if (Username != null)
+            {
+                ViewBag.UserName = Username;
+                ViewBag.ShowLogin = false;
+            }
+            else
+            {
+                ViewBag.ShowLogin = true;
+                return RedirectToAction("LoginAdmin", "HomeAdmin");
+            }
+            var layoutFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "_LayoutOgani.cshtml");
+
+            string bodyContent = "";
+            if (System.IO.File.Exists(layoutFilePath))
+            {
+                string layoutContent = System.IO.File.ReadAllText(layoutFilePath);
+
+                int bodyStartIndex = layoutContent.IndexOf("<body");
+                int bodyEndIndex = layoutContent.IndexOf("</body>", bodyStartIndex) + 7;
+                if (bodyStartIndex != -1 && bodyEndIndex != -1)
+                {
+                    bodyContent = layoutContent.Substring(bodyStartIndex, bodyEndIndex - bodyStartIndex);
+                }
+            }
+            var model = new LayoutViewModel { Body = bodyContent };
+            return View(model);
+        }
+
+        [Route("EditBody")]
+        [HttpPost]
+        public IActionResult EditBody(LayoutViewModel model)
+        {
+            
+            var layoutFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "_LayoutOgani.cshtml");
+
+            if (System.IO.File.Exists(layoutFilePath))
+            {
+                string layoutContent = System.IO.File.ReadAllText(layoutFilePath);
+
+                int bodyStartIndex = layoutContent.IndexOf("<body");
+                int bodyEndIndex = layoutContent.IndexOf("</body>", bodyStartIndex) + 7;
+                if (bodyStartIndex != -1 && bodyEndIndex != -1)
+                {
+                    layoutContent = layoutContent.Substring(0, bodyStartIndex) +
+                                    model.Body +
+                                    layoutContent.Substring(bodyEndIndex);
+                }
+
+                System.IO.File.WriteAllText(layoutFilePath, layoutContent);
+
+                var layoutRecord = db.LayoutContents.FirstOrDefault(l => l.Section == "Body");
+                layoutRecord = new LayoutContent
+                {
+                    Section = "Body",
+                    Content = model.Body,
+                    UpdateTime = DateTime.Now
+                };
+                db.LayoutContents.Add(layoutRecord);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Admin");
+        }
+
+        [Route("ViewFooter")]
+        [HttpGet]
+        public async Task<IActionResult> ViewFooter()
+        {
+            var Username = HttpContext.Session.GetString("Username");
+
+            if (Username != null)
+            {
+                ViewBag.UserName = Username;
+                ViewBag.ShowLogin = false;
+            }
+            else
+            {
+                ViewBag.ShowLogin = true;
+                return RedirectToAction("LoginAdmin", "HomeAdmin");
+            }
+
+            var layoutFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "_LayoutOgani.cshtml");
+
+            string FooterContent = "";
+            string cssLinks = "";
+            string jsLinks = "";
+
+            if (System.IO.File.Exists(layoutFilePath))
+            {
+                string layoutContent = System.IO.File.ReadAllText(layoutFilePath);
+
+                int bodyStartIndex = layoutContent.IndexOf("<footer");
+                int bodyEndIndex = layoutContent.IndexOf("</footer>", bodyStartIndex);
+
+                if (bodyStartIndex != -1 && bodyEndIndex != -1)
+                {
+                    FooterContent = layoutContent.Substring(bodyStartIndex, bodyEndIndex - bodyStartIndex + 9);
+                }
+
+                cssLinks = ExtractTags(layoutContent, "link", "rel=\"stylesheet\"");
+                jsLinks = ExtractTags(layoutContent, "script", "src");
+            }
+
+            var model = new LayoutViewModel
+            {
+                Footer = FooterContent,
+                CssLinks = cssLinks,
+                JsLinks = jsLinks
+            };
+            return View("ViewFooter", model);
+        }
+
+        [Route("EditFooter")]
+        [HttpGet]
+        public IActionResult EditFooter()
+        {
+            var Username = HttpContext.Session.GetString("Username");
+
+            if (Username != null)
+            {
+                ViewBag.UserName = Username;
+                ViewBag.ShowLogin = false;
+            }
+            else
+            {
+                ViewBag.ShowLogin = true;
+                return RedirectToAction("LoginAdmin", "HomeAdmin");
+            }
+
+            var layoutFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "_LayoutOgani.cshtml");
+
+            string bodyContent = "";
+            if (System.IO.File.Exists(layoutFilePath))
+            {
+                string layoutContent = System.IO.File.ReadAllText(layoutFilePath);
+
+                int bodyStartIndex = layoutContent.IndexOf("<footer");
+                int bodyEndIndex = layoutContent.IndexOf("</footer>", bodyStartIndex) + 9;
+
+                if (bodyStartIndex != -1 && bodyEndIndex != -1)
+                {
+                    bodyContent = layoutContent.Substring(bodyStartIndex, bodyEndIndex - bodyStartIndex);
+                }
+            }
+            var model = new LayoutViewModel { Footer = bodyContent };
+            return View(model);
+        }
+
+        [Route("EditFooter")]
+        [HttpPost]
+        public IActionResult EditFooter(LayoutViewModel model)
+        {
+            var layoutFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "_LayoutOgani.cshtml");
+
+            if (System.IO.File.Exists(layoutFilePath))
+            {
+                string layoutContent = System.IO.File.ReadAllText(layoutFilePath);
+
+                int footerStartIndex = layoutContent.IndexOf("<footer");
+                int footerEndIndex = layoutContent.IndexOf("</footer>", footerStartIndex) + 9;
+
+                if (footerStartIndex != -1 && footerEndIndex != -1)
+                {
+                    layoutContent = layoutContent.Substring(0, footerStartIndex) +
+                                    model.Footer +
+                                    layoutContent.Substring(footerEndIndex);
+
+                    System.IO.File.WriteAllText(layoutFilePath, layoutContent);
+
+                    var layoutRecord = db.LayoutContents.FirstOrDefault(l => l.Section == "Footer");
+                    layoutRecord = new LayoutContent
+                    {
+                        Section = "Footer",
+                        Content = model.Footer,
+                        UpdateTime = DateTime.Now
+                    };
+                    db.LayoutContents.Add(layoutRecord);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index", "Admin");
         }
 
         [Route("danhmucsanpham")]
@@ -64,6 +563,16 @@ namespace webbanhangmvc.Areas.Admin.Controllers
         {
             if(ModelState.IsValid)
             {
+                //if (sanPham.AnhDaiDien != null)
+                //{
+                //    var filename = Path.GetFileName(sanPham.AnhDaiDien);
+                //    var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ProductsImages", filename);
+                //    using (var fileStream = new FileStream(filepath, FileMode.Create))
+                //    {
+                //        sanPham.AnhDaiDien.CopyTo(fileStream);
+                //    }
+                //    //sanPham.AnhDaiDien = filename;
+                //}
                 db.TDanhMucSps.Add(sanPham);
                 db.SaveChanges();
                 TempData["Message"] = "Thêm Mới Thành Công";
@@ -117,14 +626,16 @@ namespace webbanhangmvc.Areas.Admin.Controllers
         }
 
         [Route("DonHang")]
-        public IActionResult DonHang()
+        public IActionResult DonHang(int? page)
         {
+            int pageSize = 12;
+            int pageNumber = page == null || page < 0 ? 1 : page.Value;
+            var listsanpham = db.DonHangs.Where(o=>!string.IsNullOrEmpty(o.TenSp )&&!string.IsNullOrEmpty(o.TenKh)).OrderBy(o => o.NgayBan).AsNoTracking();
+            PagedList<DonHang> orders = new PagedList<DonHang>(listsanpham, pageNumber, pageSize);
             if (HttpContext.Session.GetString("Username") == null)
             {
-                // Người dùng đã đăng nhập, chuyển hướng đến trang chính
                 return RedirectToAction("LoginAdmin", "HomeAdmin");
             }
-            var orders = db.DonHangs.Where(o => !string.IsNullOrEmpty(o.TenSp)).ToList();
             return View(orders);
         }
 

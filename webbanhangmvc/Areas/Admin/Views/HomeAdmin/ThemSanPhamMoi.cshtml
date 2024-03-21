@@ -91,9 +91,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="AnhDaiDien" class="control-label"></label>
-                <input asp-for="AnhDaiDien" class="form-control" />
+                <input asp-for="AnhDaiDien" type="file" class="form-control" />
                 <span asp-validation-for="AnhDaiDien" class="text-danger"></span>
             </div>
+@*            <div class="form-group">
+                <label asp-for="file" class="control-label"></label>
+                <input asp-for="file" type="file" class="form-control" />
+                <span asp-validation-for="file" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
                 <label asp-for="GiaNhoNhat" class="control-label"></label>
                 <input asp-for="GiaNhoNhat" class="form-control" />

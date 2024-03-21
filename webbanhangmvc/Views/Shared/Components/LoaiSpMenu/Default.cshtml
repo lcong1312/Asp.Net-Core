@@ -3,18 +3,19 @@
 @model IEnumerable<TLoaiSp>
 <div class="col-lg-3">
                     <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
+                        <div class="hero__categories__all no-click">
+                            @*<i class="fa fa-bars"></i>*@
                             <span>Danh Mục Sản Phẩm</span>
                         </div>
-                        <ul>
+                        <ul >
+                            
                             @foreach(var item in Model)
                             {
-                                @*var  getUrl= "https://localhost:7227/api/productapi/" + item.MaLoai;
-                                <li><a style ="cursor:pointer" onclick="showProductByCategory('@getUrl')">@item.Loai </a></li>*@
+@*                              <li><a style ="cursor:pointer" onclick="showProductByCategory('@getUrl')">@item.Loai </a></li>*@
                                 <li><a asp-controller="Home" asp-action="SanPhamTheoLoai" asp-route-maloai="@item.MaLoai">@item.Loai </a></li>
                             }
-                        </ul>
+                       </ul>
+                        
                     </div>
                 </div>
   @*              <script>

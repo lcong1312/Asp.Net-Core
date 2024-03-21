@@ -3,6 +3,198 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="main-panel">
+          <div class="content-wrapper" style="width:115%";>
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-home"></i>
+                </span><font _mstmutation="1" _msttexthash="4190810" _msthash="51"> Bảng điều khiển </font></h3>
+              <nav aria-label="vụn bánh mì" _mstaria-label="157144" _msthash="52">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <span></span><font _mstmutation="1" _msttexthash="925600" _msthash="53"> </font><i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-danger card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="../../LayoutAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="hình ảnh vòng tròn" _mstalt="191880" _msthash="54">
+                    <h4 class="font-weight-normal mb-3"><font _mstmutation="1" _msttexthash="2356939" _msthash="55">Bán hàng hàng tháng </font><i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5" _msttexthash="51493" _msthash="56">@ViewBag.TongTien.ToString("N0") VNĐ</h2>
+                    <h6 class="card-text" _msttexthash="82303" _msthash="57">Tăng 30%</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+    <div class="card bg-gradient-info card-img-holder text-white">
+        <div class="card-body">
+            <img src="../../LayoutAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="hình ảnh vòng tròn">
+            <h4 class="font-weight-normal mb-3">Đơn đặt hàng hàng tháng <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+            </h4>
+            <h2 class="mb-5">@ViewBag.TongSoDonDatHang Đơn Hàng</h2>
+            <h6 class="card-text">Giảm 10%</h6>
+        </div>
+    </div>
+</div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-success card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="../../LayoutAdmin/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="hình ảnh vòng tròn" _mstalt="191880" _msthash="62">
+                    <h4 class="font-weight-normal mb-3"><font _mstmutation="1" _msttexthash="6994832" _msthash="63">Lượng Khách Truy Cập Vào Trang </font><i class="mdi mdi-diamond mdi-24px float-right"></i>
+                    </h4>
+                    <h2 class="mb-5" _msttexthash="46995" _msthash="64">@ViewBag.TruyCap</h2>
+                    <h6 class="card-text" _msttexthash="74191" _msthash="65">Tăng 5%</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-<h1>Index Admin</h1>
 
+            @*<div class="row">
+            <!-- Add your chart canvases here -->
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        Bar Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas class="my-4 h-25" id="combinedChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        Pie Chart
+                    </div>
+                    <div class="card-body">
+                        <canvas class="my-4 h-25" id="pie"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../../LayoutAdmin/assets/js/chart.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajax({
+                type: "POST",
+                url: "Gettotal",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) {
+                    var labels = data[0];
+                    var visitsData = data[1];
+                    var ordersData = data[2];
+                    var salesData = data[3];
+
+                    var colors = ['Red', 'Blue', 'Green'];
+
+                    new Chart(document.getElementById('combinedChart'), {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Lượt Truy Cập',
+                                    backgroundColor: colors[0],
+                                    data: visitsData,
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Đơn Đặt Hàng',
+                                    backgroundColor: colors[1],
+                                    data: ordersData,
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'Tổng Tiền',
+                                    backgroundColor: colors[2],
+                                    data: salesData,
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+
+                    var totalVisits = visitsData[visitsData.length - 1];
+                    var totalOrders = ordersData[ordersData.length - 1];
+                    var totalSales = salesData[salesData.length - 1];
+
+                    new Chart(document.getElementById('pie'), {
+                        type: 'pie',
+                        data: {
+                            labels: ['Lượt Truy Cập', 'Tổng Đơn Hàng', 'Tổng Tiền'],
+                            datasets: [{
+                                backgroundColor: colors,
+                                data: [totalVisits, totalOrders, totalSales],
+                                borderWidth: 1
+                            }]
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+*@
+            @*<div class="row">
+              <div class="col-md-7 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <div class="clearfix">
+                      <h4 class="card-title float-left" _msttexthash="5823597" _msthash="66">Thống kê lượt truy cập và bán hàng</h4>
+                      <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-right"><ul><li><span class="legend-dots" style="background:linear-gradient(to right, rgba(218, 140, 255, 1), rgba(154, 85, 255, 1))"></span><font _mstmutation="1" _msttexthash="22711" _msthash="67">CHN</font></li><li><span class="legend-dots" style="background:linear-gradient(to right, rgba(255, 191, 150, 1), rgba(254, 112, 150, 1))"></span><font _mstmutation="1" _msttexthash="831519" _msthash="68">MỸ</font></li><li><span class="legend-dots" style="background:linear-gradient(to right, rgba(54, 215, 232, 1), rgba(177, 148, 250, 1))"></span><font _mstmutation="1" _msttexthash="1685242" _msthash="69">Vương quốc Anh</font></li></ul></div>
+                    </div>
+                    <canvas id="visit-sale-chart" class="mt-4 chartjs-render-monitor" width="470" height="235" style="display: block; width: 470px; height: 235px;"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <h4 class="card-title" _msttexthash="5845645" _msthash="70">Nguồn lưu lượng truy cập</h4>
+                    <canvas id="traffic-chart" width="301" height="150" style="display: block; width: 301px; height: 150px;" class="chartjs-render-monitor"></canvas>
+                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"><ul><li><span class="legend-dots" style="background:linear-gradient(to right, rgba(54, 215, 232, 1), rgba(177, 148, 250, 1))"></span><font _mstmutation="1" _msttexthash="3340649" _msthash="71">Công cụ tìm kiếm<span class="float-right" _mstmutation="1" _istranslated="1">30%</span></font></li><li><span class="legend-dots" style="background:linear-gradient(to right, rgba(6, 185, 157, 1), rgba(132, 217, 210, 1))"></span><font _mstmutation="1" _msttexthash="6775093" _msthash="72">Nhấp chuột trực tiếp<span class="float-right" _mstmutation="1" _istranslated="1">30%</span></font></li><li><span class="legend-dots" style="background:linear-gradient(to right, rgba(255, 191, 150, 1), rgba(254, 112, 150, 1))"></span><font _mstmutation="1" _msttexthash="2874859" _msthash="73">Dấu trang Nhấp vào<span class="float-right" _mstmutation="1" _istranslated="1">40%</span></font></li></ul></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>*@
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+
+          <footer class="footer">
+            <div class="container-fluid d-flex justify-content-between">
+              <span class="text-muted d-block text-center text-sm-start d-sm-inline-block" _msttexthash="2903901" _msthash="145">Copyright © bootstrapdash.com 2021</span>
+              <span class="float-none float-sm-end mt-1 mt-sm-0 text-end" _msttexthash="11742029" _msthash="146"> <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank" _istranslated="1"></a>Bootstrapdash.com</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+
+        </body>
+</html>

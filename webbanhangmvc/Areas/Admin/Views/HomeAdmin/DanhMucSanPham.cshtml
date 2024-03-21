@@ -27,7 +27,7 @@
                 Độ Nới
             </th>
             <th>
-                Thời gian bảo hành
+                Ảnh Sản Phẩm
             </th>
             <th>
                 Chiết Khấu
@@ -65,7 +65,10 @@
                 @Html.DisplayFor(modelItem => item.DoNoi)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ThoiGianBaoHanh)
+                @if (!string.IsNullOrEmpty(item.AnhDaiDien))
+                    {
+                        <img src="~/ProductsImages/@item.AnhDaiDien" alt="Image" style="max-width: 100px; max-height: 100px;" />
+                    }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ChietKhau)

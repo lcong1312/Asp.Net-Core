@@ -1,0 +1,16 @@
+﻿.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+    .ellipsis:hover {
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: ellipsis;
+    }
+
+.tranfom {
+    transition: none;
+    transform: none;
+}

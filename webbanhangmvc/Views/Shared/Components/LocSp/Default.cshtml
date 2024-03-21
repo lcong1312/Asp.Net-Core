@@ -1,52 +1,77 @@
-﻿@using webbanhangmvc.Models;
+﻿@using webbanhangmvc.Models
+@using X.PagedList.Mvc.Core
 @model IEnumerable<TLoaiSp>
 
-    <ul>
-        <li class="active" data-filter="*">Tất Cả</li>
-        @foreach(var item in Model)
-        {
-            
-        var  getUrl= "https://localhost:7227/api/productapi/" + item.MaLoai;
-        <li><a style ="cursor:pointer" onclick="Showlocsp('@getUrl')">@item.Loai </a></li>
-        }
-    </ul>
-                <script>
-                    function Showlocsp(getUrl){
-                        var str='';
-                        $.ajax({
-                            type: 'GET',
-                            url: getUrl,
-                            dataType: 'json',
-                            success:function(data){
-                                $.each(data, function(key, val){
-                                    str += '<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" >';
-                                    str += '<div class="featured__item" >';
-                                    str += '<div class="featured__item__pic set-bg" data-setbg=\"';
-                                    var linkImage = "../ProductsImages/" +$.trim(val.anhDaiDien);
-                                    str += linkImage;
-                                    str += '\" style = "background-image: url(&quot;';
-                                    str += linkImage;
-                                    str += '&quot;)">';
-                                    str += '<ul class="featured__item__pic__hover" >';
-                                    str += '<li><a href="#" > <i class="fa fa-heart"></i></a></li>';
-                                    str += '<li><a href="#" > <i class="fa fa-retweet"></i></a></li>';
-                                    str += '<li><a href="/Cart/AddToCart?productId=' + val.maSp + '"><i class="fa fa-shopping-cart"></i></a></li>';
-                                    str += '</ul></div>';
-                                    str += '<div class="featured__item__text" >';
-                                    str += '<h6><a href=\"/Home/ProductDetail?maSp=';
-                                    str += $.trim(val.tenSp);
-                                    str += '\">';
-                                    str += $.trim(val.tenSp);
-                                    str += '</a></h6 ><h5>';
-                                    str += val.giaNhoNhat.toString();
-                                    str += '</h5> </div></div></div>';
-                                    //str += '<p>'+val.tenSp+'</p>'
-                                });
-                                $('#displayProduct').html(str);
-                            },
-                            Errror: function(xhr){
-                                alert(xhr.reponseText)
-                            }
-                        });
+<ul>
+    <li class="active" data-filter="*"> </li>
+    @foreach (var item in Model)
+    {
+        var getUrl = "https://localhost:7227/api/productapi/" + item.MaLoai;
+        <li><a style="cursor:pointer" onclick="Showlocsp('@getUrl', 1)">@item.Loai</a></li>
+    }
+</ul>
+<br />
+<div id="displayProduct" class="row featured__filter"></div>
+<div class="product__pagination" id="paginationControls"></div>
+
+<script>
+    function Showlocsp(getUrl, pageNumber) {
+        var str = '';
+        var paginationControls = '';
+
+        $.ajax({
+            type: 'GET',
+            url: getUrl,
+            data: { page: pageNumber },
+            dataType: 'json',
+            success: function (response) {
+                var data = response.products;
+                var pagination = response.pagination;
+
+                // Tạo danh sách sản phẩm
+                $.each(data, function (key, val) {
+                    str += '<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">';
+                    str += '<div class="featured__item">';
+                    str += '<div class="featured__item__pic set-bg" data-setbg="' + '../ProductsImages/' + $.trim(val.anhDaiDien) + '" style="background-image: url(\'' + '../ProductsImages/' + $.trim(val.anhDaiDien) + '\')">';
+                    str += '<ul class="featured__item__pic__hover">';
+                    str += '<li><a href="#"><i class="fa fa-heart"></i></a></li>';
+                    str += '<li><a href="#"><i class="fa fa-retweet"></i></a></li>';
+                    str += '<li><a href="/Cart/AddToCart?productId=' + val.maSp + '"><i class="fa fa-shopping-cart"></i></a></li>';
+                    str += '</ul></div>';
+                    str += '<div class="featured__item__text ellipsis">';
+                    str += '<h6><a href="/Home/ProductDetail?maSp=' + val.maSp + '">' + $.trim(val.tenSp) + '</a></h6>';
+                    str += '<h5>' + val.giaNhoNhat.toString() + '</h5></div></div></div>';
+                });
+
+                // Hiển thị danh sách sản phẩm
+                $('#displayProduct').html(str);
+
+                // Tạo các nút điều hướng phân trang
+                if (pagination.PageCount > 1) {
+                    paginationControls += '<div class="product__pagination">';
+                    
+                    if (pagination.HasPreviousPage) {
+                        paginationControls += '<a href="#" onclick="Showlocsp(\'' + getUrl + '\', ' + (pagination.PageNumber - 1) + ')">&laquo;</a>';
                     }
-                </script>
+
+                    for (var i = 1; i <= pagination.PageCount; i++) {
+                        var cssClass = i === pagination.PageNumber ? "current" : "";
+                        paginationControls += '<a href="#" onclick="Showlocsp(\'' + getUrl + '\', ' + i + ')" class="' + cssClass + '">' + i + '</a>';
+                    }
+
+                    if (pagination.HasNextPage) {
+                        paginationControls += '<a href="#" onclick="Showlocsp(\'' + getUrl + '\', ' + (pagination.PageNumber + 1) + ')">&raquo;</a>';
+                    }
+
+                    paginationControls += '</div>';
+                }
+
+                // Hiển thị các nút phân trang
+                $('#paginationControls').html(paginationControls);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+</script>

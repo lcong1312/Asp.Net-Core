@@ -21,18 +21,6 @@ namespace webbanhangmvc.Controllers
         // [Authentication]
         public IActionResult Index(string maloai, int? page)
         {
-            int pageSize = 8;
-            int pageNumber = page ?? 1;
-            IQueryable<TDanhMucSp> listsanpham;
-            if (!string.IsNullOrEmpty(maloai))
-            {
-                listsanpham = _context.TDanhMucSps.Where(x => x.MaLoai == maloai).OrderBy(x => x.TenSp);
-            }
-            else
-            {
-                listsanpham = _context.TDanhMucSps.OrderBy(x => x.TenSp);
-            }
-            PagedList<TDanhMucSp> lst = new PagedList<TDanhMucSp>(listsanpham, pageNumber, pageSize);
             if (HttpContext.Session.GetString("UserName") != null)
             {
                 ViewBag.UserName = HttpContext.Session.GetString("UserName");
@@ -42,11 +30,60 @@ namespace webbanhangmvc.Controllers
             {
                 ViewBag.ShowLogin = true; // Hiển thị nút đăng nhập
             }
+            LogAcces();
+            int pageSize = 8;
+            int maxPagesToShow = 5; // Số trang tối đa để hiển thị
+
+            int pageNumber = page ?? 1;
+            IQueryable<TDanhMucSp> listsanpham;
+            IQueryable<TDanhMucSp> listsanphamck;
+            listsanphamck = _context.TDanhMucSps.Where(x => x.ChietKhau >= 20).OrderBy(x => x.TenSp);
+            listsanpham = _context.TDanhMucSps.Where(x => x.ChietKhau < 20||x.ChietKhau==null).OrderBy(x => x.TenSp);
+            if (!string.IsNullOrEmpty(maloai))
+            {
+                listsanphamck = listsanphamck.Where(x => x.MaLoai == maloai);
+                listsanpham = listsanpham.Where(x => x.MaLoai == maloai);  
+                //listsanpham = _context.TDanhMucSps.Where(x => x.MaLoai == maloai).OrderBy(x => x.TenSp);
+            }
+            //else
+            //{
+            //    listsanphamck = _context.TDanhMucSps.Where(x => x.ChietKhau >= 20).OrderBy(x => x.TenSp);
+            //    listsanpham = _context.TDanhMucSps.Where(x => x.ChietKhau < 20 || x.ChietKhau == null).OrderBy(x => x.TenSp);
+            //    //listsanpham = _context.TDanhMucSps.OrderBy(x => x.TenSp);
+            //}
+            PagedList<TDanhMucSp> lst = new PagedList<TDanhMucSp>(listsanpham, pageNumber, pageSize);
+            PagedList<TDanhMucSp> lstck = new PagedList<TDanhMucSp>(listsanphamck, pageNumber, pageSize);
+            // Tính số lượng trang hiển thị tối đa
+            int totalPages = lst.PageCount;
+            int startPage = Math.Max(1, pageNumber - (maxPagesToShow / 2));
+            int endPage = Math.Min(totalPages, startPage + maxPagesToShow - 1);
+
             ViewBag.CurrentPageNumber = pageNumber;
             ViewBag.SelectedCategory = maloai;
+            ViewBag.StartPage = startPage;
+            ViewBag.EndPage = endPage;
+            ViewBag.TotalPages = totalPages;
+
             return View(lst);
         }
 
+
+        private void LogAcces()
+        {
+             var IpAdress = HttpContext.Connection.RemoteIpAddress?.ToString();
+            if (string.IsNullOrEmpty(IpAdress))
+            {
+                IpAdress = "Unknow";
+            }
+            var acces = new TruyCap
+            {
+                IpAdress = IpAdress,
+                ThoiGian = DateTime.Now
+            };
+
+            db.TruyCaps.Add(acces);
+            db.SaveChanges();
+        }
 
         public IActionResult SanPhamTheoLoai(string maloai, int? page)
         {
@@ -70,6 +107,7 @@ namespace webbanhangmvc.Controllers
             }
             var sanPham = db.TDanhMucSps.SingleOrDefault(x => x.MaSp == maSp);
             var anhSanPham = db.TAnhSps.Where(x => x.MaSp == maSp).ToList();
+            var comment = _context.Comments.Where(x => x.MaSp == maSp).ToList();
             ViewBag.anhSanPham = anhSanPham;
             return View(sanPham);
         }
@@ -87,16 +125,8 @@ namespace webbanhangmvc.Controllers
             }
             var sanPham = db.TDanhMucSps.SingleOrDefault(x => x.MaSp == maSp);
             var anhSanPham = db.TAnhSps.Where(x => x.MaSp == maSp).ToList();
-            var homeProductDetailViewModel = new HomeProductDetalViewModel { danhMucSp = sanPham, anhSp = anhSanPham };
-            if (!string.IsNullOrEmpty(UserName))
-            {
-                ViewBag.UserName = UserName;
-                ViewBag.ShowLogin = false; // Ẩn nút đăng nhập
-            }
-            else
-            {
-                ViewBag.ShowLogin = true; // Hiển thị nút đăng nhập
-            }
+            var comment = db.Comments.Where(x => x.MaSp == maSp).ToList();
+            var homeProductDetailViewModel = new HomeProductDetalViewModel { danhMucSp = sanPham, anhSp = anhSanPham ,comments=comment,CommentCount=comment.Count};
 
             return View(homeProductDetailViewModel);
         }
@@ -105,43 +135,7 @@ namespace webbanhangmvc.Controllers
         {
             return View();
         }
-        //public IActionResult Thongtin()
-        //{
-        //    // Kiểm tra xem người dùng đã đăng nhập chưa
-        //    if (HttpContext.Session.GetString("UserName") != null)
-        //    {
-        //        // Lấy username của người dùng từ session
-        //        string userName = HttpContext.Session.GetString("UserName");
-
-        //        // Truy vấn cơ sở dữ liệu để lấy thông tin người dùng dựa trên username
-        //        var user = _context.TUserKhs.FirstOrDefault(u => u.UsernameKh == userName);
-
-        //        // Kiểm tra xem người dùng có tồn tại trong cơ sở dữ liệu hay không
-        //        if (user != null)
-        //        {
-        //            // Chuyển dữ liệu người dùng sang view thông tin
-        //            return View(user);
-        //        }
-        //        else
-        //        {
-        //            // Nếu không tìm thấy thông tin người dùng trong cơ sở dữ liệu, có thể xử lý tùy ý của bạn,
-        //            // ví dụ: đăng xuất người dùng và chuyển hướng về trang chủ
-        //            HttpContext.Session.Clear(); // Xóa tất cả các session
-        //            return RedirectToAction("Index", "Home"); // Chuyển hướng về trang đăng nhập
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // Nếu người dùng chưa đăng nhập, có thể chuyển hướng hoặc xử lý khác tùy ý của bạn
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //}
-
-
-        //public IActionResult Giohang()
-        //{
-        //    return View();
-        //}
+        
         public async Task<ActionResult> RandomProductDetail()
         {
             if (HttpContext.Session.GetString("UserName") != null)
@@ -168,7 +162,7 @@ namespace webbanhangmvc.Controllers
             }
         }
 
-        public IActionResult Tintuc(int page = 1)
+        public IActionResult Tintuc(int id)
         {
             if (HttpContext.Session.GetString("UserName") != null)
             {
@@ -180,18 +174,21 @@ namespace webbanhangmvc.Controllers
                 ViewBag.ShowLogin = true; // Hiển thị nút đăng nhập
             }
 
-            int maxRecentPosts = 5; // Số bài viết gần đây tối đa
-            int pageSize = 1; // Số bài viết trên mỗi trang
+            // Lấy bài viết đầu tiên dựa trên id được chọn
+            var singlePost = db.Posts.FirstOrDefault(p => p.Id == id);
 
-            // Lấy 1 bài viết đầu tiên
-            var singlePost = db.Posts.FirstOrDefault();
+            if (singlePost == null)
+            {
+                // k có bài viết, hiển thị bài đầu tiên
+                singlePost = db.Posts.FirstOrDefault();
+            }
 
             // Lấy các bài viết gần đây
             var recentPosts = db.Posts
-        .OrderByDescending(p => p.Id) // Sắp xếp từ số lớn đến nhỏ
-        .Skip((page - 1) * maxRecentPosts)
-        .Take(maxRecentPosts)
-        .ToList();
+                .Where(p => p.Id != id) // Loại bỏ bài viết đầu tiên
+                .OrderByDescending(p => p.Id) // Sắp xếp từ số lớn đến nhỏ
+                .Take(5) // Lấy 5 bài viết gần đây
+                .ToList();
 
             // Truyền dữ liệu vào view
             ViewBag.SinglePost = singlePost;
@@ -199,7 +196,45 @@ namespace webbanhangmvc.Controllers
 
             return View();
         }
-        public IActionResult TourDuLich()
+
+        //[HttpPost]
+        public IActionResult AddComment(string masp, string content)
+        {
+            if (string.IsNullOrEmpty(content))
+            {
+                return BadRequest("Thiếu thông tin bình luận .");
+            }
+            Random rd = new Random();
+            var newComment = new Comment
+            {
+                Id = rd.Next(1000, 10001),
+                Content = content,
+                CreatedAt = DateTime.Now,
+                MaSp = masp
+            };
+                _context.Comments.Add(newComment);
+                _context.SaveChanges();
+                return RedirectToAction("ProductDetail","Home",new {masp=masp});
+        }
+
+        public IActionResult sanphamchietkhau(string maloai, int? page)
+        {
+            int pageSize = 8;
+            int pageNumber = page ?? 1;
+            IQueryable<TDanhMucSp> listsanphamck;
+            listsanphamck = _context.TDanhMucSps.Where(x => x.ChietKhau >= 20).OrderBy(x => x.TenSp);
+
+            if (!string.IsNullOrEmpty(maloai))
+            {
+                listsanphamck = listsanphamck.Where(x => x.MaLoai == maloai);
+            }
+
+            PagedList<TDanhMucSp> lstck = new PagedList<TDanhMucSp>(listsanphamck, pageNumber, pageSize);
+
+            return View("sanphamchietkhau", lstck);
+        }
+    
+    public IActionResult TourDuLich()
         {
             return View();
         }
@@ -211,7 +246,7 @@ namespace webbanhangmvc.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Logout()
         {
             HttpContext.Session.Clear(); // Xóa tất cả các session

@@ -17,15 +17,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../1LayoutOgani/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../1LayoutOgani/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../1LayoutOgani/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../1LayoutOgani/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../1LayoutOgani/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../1LayoutOgani/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../1LayoutOgani/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../1LayoutOgani/css/style06.css" type="text/css">
-    <link rel="shortcut icon" href="../../LayoutAdmin/assets/images/favicon1.png" />
+<link rel="stylesheet" href="~/1LayoutOgani/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="~/1LayoutOgani/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="~/1LayoutOgani/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="~/1LayoutOgani/css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="~/1LayoutOgani/css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="~/1LayoutOgani/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="~/1LayoutOgani/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="~/1LayoutOgani/css/style13.css" type="text/css">
+<link rel="shortcut icon" href="~/LayoutAdmin/assets/images/favicon1.png" />
 
 </head>
 <body>
@@ -34,33 +34,41 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="../1LayoutOgani/img/logo0.png" alt=""></a>
+            <a href="@Url.Action("Index","Home")"><img src="../1LayoutOgani/img/logo0.png" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> </a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> </a></li>
+                <li><a href="@Url.Action("Cart","Cart")"><i class="fa fa-shopping-bag"></i> </a></li>
             </ul>
             
         </div>
         <div class="humberger__menu__widget">
-            
+            @*<div class="header__top__right__language">
+                <img src="../1LayoutOgani/img/language0.png" alt="">
+                <div>Tiếng Việt</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="#">Tiếng Việt</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </div>*@
             <div class="header__top__right__auth">
-                
+                @*<a href="#"><i class="fa fa-user"></i> Login</a>*@
+                @*<a asp-controller="Acces" asp-action="Logout" ><i class="fa fa-user"></i> Logout</a>*@
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="https://localhost:7227/Home/Index">Trang Chủ</a></li>
+                <li class="active"><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
                 <li><a href="#">Trang</a>
                     <ul class="header__menu__dropdown">
                         <li><a asp-controller="Home" asp-action="ProductDetail">Chi Tiết Cửa Hàng</a></li>
-                        <li><a  asp-controller="Cart" asp-action="Cart">>Giỏ Hàng Shop</a></li>
-                        <li><a href="~/Cart/Checkout/">Kiểm Tra Lại</a></li>
+                        <li><a  asp-controller="Cart" asp-action="Cart">Giỏ Hàng Shop</a></li>
+                        <li><a href="@Url.Action("KiemTraDon","Cart")">Kiểm Tra Đơn Hàng</a></li>
                         
                     </ul>
                 </li>
@@ -77,8 +85,8 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Miễn Phí Vận Chuyển Các Đơn Từ</li>
+                <li><i class="fa fa-envelope"></i> Valiking010@gmail.com</li>
+                
             </ul>
         </div>
     </div>
@@ -114,18 +122,18 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="../1LayoutOgani"><img src="../1LayoutOgani/img/logo0.png" alt="" ></a>
+                        <a href="../Home/Index"><img src="../1LayoutOgani/img/logo0.png" alt="" ></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="https://localhost:7227/Home/Index">Trang Chủ</a></li>
+                            <li class="active"><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
                             <li><a>Trang</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="@Url.Action("RandomProductDetail", "Home")" >Chi Tiết Của Hàng</a></li>
                                     <li><a asp-controller="Cart" asp-action="Cart">Giỏ Hàng</a></li>
-                                    <li><a asp-controller="Cart" asp-action="Checkout">Kiểm Tra Lại Hàng</a></li>
+                                    <li><a asp-controller="Cart" asp-action="KiemTraDon">Kiểm Tra Đơn Hàng</a></li>
                                 </ul>
                             </li>
                             <li><a asp-controller="Home" asp-action="TinTuc" >Tin Tức</a></li>
@@ -148,94 +156,63 @@
     
     <!-- Header Section End -->
 
-    <!-- Blog Details Section Begin -->
-    <section class="blog-details spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-5 order-md-1 order-2">
-                    <div class="blog__sidebar">
-                        
-                       <div class="blog__sidebar__item">
-    <h4>Tin Tức Gần Đây</h4>
-<div class="blog__sidebar__recent">
+<!-- Blog Details Section Begin -->
+<section class="blog-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-5 order-md-1 order-2">
+                <div class="blog__sidebar">
+                    <div class="blog__sidebar__item">
+                        <h4>Tin Tức Gần Đây</h4>
+                        <div class="blog__sidebar__recent">
     <!-- Hiển thị các bài viết gần đây -->
-    @foreach (var post in ViewBag.RecentPosts)
+    @if (ViewBag.RecentPosts != null)
     {
-        <a href="@Url.Action("Tintuc", new { id = post.Id })" class="blog__sidebar__recent__item">
-            <div class="blog__sidebar__recent__item__pic">
-                @if (!string.IsNullOrEmpty(post.ImageUrl))
-                {
-                    <img src="@Url.Content("~/ProductsImages/" + post.ImageUrl)" alt="Image" style="max-width: 100px; max-height: 100px;" />
-                }
-            </div>
-            <div class="blog__sidebar__recent__item__text">
-                <h6>@post.Title</h6>
-                <span>@post.CreatedAt</span>
-            </div>
-        </a>
+        @foreach (var post in ViewBag.RecentPosts)
+        {
+            <a href="@Url.Action("Tintuc", new { id = post.Id })" class="blog__sidebar__recent__item">
+                <div class="blog__sidebar__recent__item__pic">
+                    @if (!string.IsNullOrEmpty(post.ImageUrl))
+                    {
+                        <img src="@Url.Content("~/ProductsImages/" + post.ImageUrl)" alt="Image" style="max-width: 100px; max-height: 100px;" />
+                    }
+                </div>
+                <div class="blog__sidebar__recent__item__text">
+                    <h6>@post.Title</h6>
+                    <span>@post.CreatedAt</span>
+                </div>
+            </a>
+        }
     }
 </div>
 
-</div>
-
-
-                        <div class="blog__sidebar__item">
-                            
-                            <div class="blog__sidebar__item__tags">
-                               
-                            </div>
+                    </div>
+                    <div class="blog__sidebar__item">
+                        <div class="blog__sidebar__item__tags">
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8 col-md-7 order-md-1 order-1">
-                     @*@foreach (var post in Model){*@
-                   <div class="blog__details__text" style="text-align: center;">
-    <h3 >@ViewBag.SinglePost.Title</h3>
-    <div >
-@if (!string.IsNullOrEmpty(ViewBag.SinglePost.ImageUrl))
+            </div>
+            <div class="col-lg-8 col-md-7 order-md-1 order-1">
+                <div class="blog__details__text" style="text-align: center;">
+                    @if (ViewBag.SinglePost != null)
 {
-    <img src="@Url.Content("~/ProductsImages/" + ViewBag.SinglePost.ImageUrl)" alt="Image" style="max-width: 350px;" align="right" />
-}
-     <p ">@ViewBag.SinglePost.Content</p>
+    <h3>@ViewBag.SinglePost.Title</h3>
+    <div>
+        @if (!string.IsNullOrEmpty(ViewBag.SinglePost.ImageUrl))
+        {
+            <img src="@Url.Content("~/ProductsImages/" + ViewBag.SinglePost.ImageUrl)" alt="Image" style="max-width: 350px;" align="right" />
+        }
+        <p>@ViewBag.SinglePost.Content</p>
     </div>
-</div>
+}
 
-                    <div class="blog__details__content">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                    <div class="blog__details__author__pic">
-                                        <img src="../ProductsImages/gai.jpg">
-                                    </div>
-                                    <div class="blog__details__author__text">
-                                        <h6>Hi !</h6>
-                                        <span>Admin</span>
-                                    </div>
-                                </div>
-                               @* }*@
-                            
-                            <div class="col-lg-6">
-                                <div class="blog__details__widget">
-                                    <ul>
-                                        <li><span>Loại:</span> VaLiKing</li>
-                                        <li><span>Tags:</span> Tất Cả, Xu Hướng</li>
-                                    </ul>
-                                    <div class="blog__details__social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Blog Details Section End -->
+    </div>
+</section>
+
 
 
 
@@ -306,14 +283,14 @@
             </div>
         </div>
     </footer>
-       <script src="../1LayoutOgani/js/jquery-3.3.1.min.js"></script>
-    <script src="../1LayoutOgani/js/bootstrap.min.js"></script>
-    <script src="../1LayoutOgani/js/jquery.nice-select.min.js"></script>
-    <script src="../1LayoutOgani/js/jquery-ui.min.js"></script>
-    <script src="../1LayoutOgani/js/jquery.slicknav.js"></script>
-    <script src="../1LayoutOgani/js/mixitup.min.js"></script>
-    <script src="../1LayoutOgani/js/owl.carousel.min.js"></script>
-    <script src="../1LayoutOgani/js/main.js"></script>
+<script src="~/1LayoutOgani/js/jquery-3.3.1.min.js"></script>
+<script src="~/1LayoutOgani/js/bootstrap.min.js"></script>
+<script src="~/1LayoutOgani/js/jquery.nice-select.min.js"></script>
+<script src="~/1LayoutOgani/js/jquery-ui.min.js"></script>
+<script src="~/1LayoutOgani/js/jquery.slicknav.js"></script>
+<script src="~/1LayoutOgani/js/mixitup.min.js"></script>
+<script src="~/1LayoutOgani/js/owl.carousel.min.js"></script>
+<script src="~/1LayoutOgani/js/main.js"></script>
 
 
 

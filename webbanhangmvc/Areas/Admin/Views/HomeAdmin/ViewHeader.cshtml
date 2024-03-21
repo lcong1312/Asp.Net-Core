@@ -1,0 +1,18 @@
+﻿@using webbanhangmvc.Models;
+@model LayoutViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "QuanLyBaiDang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<p>
+    <a asp-action="EditLayout">Sửa Header</a>
+</p>
+    <div class="container mt-5">
+        <h2>Header Content</h2>
+        <div class="card">
+            <div class="card-body">
+               @Html.Raw(Model.Header)
+            </div>
+        </div>
+    </div>

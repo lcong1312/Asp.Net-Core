@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace webbanhangmvc.Models;
 
@@ -43,6 +44,9 @@ public partial class TDanhMucSp
 
     public decimal? GiaLonNhat { get; set; }
 
+    public string? GiaNhoNhatFomat => GiaNhoNhat.HasValue ? GiaNhoNhat.Value.ToString("N0") + " VND" : null;
+    public string? GiaLonNhatFomat => GiaLonNhat.HasValue ? GiaLonNhat.Value.ToString("N0") + " VND" : null;
+
     public virtual TChatLieu? MaChatLieuNavigation { get; set; }
 
     public virtual TLoaiDt? MaDtNavigation { get; set; }
@@ -54,6 +58,7 @@ public partial class TDanhMucSp
     public virtual TQuocGium? MaNuocSxNavigation { get; set; }
 
     public virtual ICollection<TAnhSp> TAnhSps { get; } = new List<TAnhSp>();
+    public virtual ICollection<Comment> Comments { get; } = new List<Comment>();
 
     public virtual ICollection<TChiTietSanPham> TChiTietSanPhams { get; } = new List<TChiTietSanPham>();
 }

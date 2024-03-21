@@ -1,9 +1,12 @@
-﻿
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using webbanhangmvc.Models
+@model X.PagedList.IPagedList<DonHang>
 @{
     ViewData["Title"] = "DonHang";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-@using webbanhangmvc.Models;
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <h3>Đơn Hàng Đã Đặt Thành Công</h3>
 
@@ -31,6 +34,15 @@
             </th>
             <th>
                 Địa Chỉ
+            </th>
+            <th>
+                Phương Thức Thanh Toán
+            </th>
+@*            <th>
+                Thanh Toán
+            </th>*@
+            <th>
+                Đã Gửi Đơn
             </th>
             <th></th>
         </tr>
@@ -67,10 +79,34 @@
             <td>
                @item.ThanhTien
             </td>
+
             <td>
                @item.DiaChi
             </td>
+            <td>
+                @item.Phuongthuctt
+            </td>
 
+            @*<td>
+                    @if(item.Phuongthuctt=="Qua Ngân Hàng")
+                    {
+                        <text>Đã Thanh Toán</text>
+                    }
+                    else
+                    {
+                        @item.ThanhToan
+                    }
+                </td>*@
+            <td>
+    @if (string.IsNullOrEmpty(item.Xulydonhang))
+    {
+        <text>Chưa Gửi</text>
+    }
+    else
+    {
+        @item.Xulydonhang
+    }
+</td>
             <td>
                  <a asp-action="SuaDonHang" asp-route-Mahoadon="@item.MaHoaDon">Sửa</a> |
                 <a asp-action="XoaDonHang" asp-route-Mahoadon="@item.MaHoaDon">Xóa</a>
@@ -79,6 +115,8 @@
 }
     </tbody>
 </table>
-@*@Html.PagedListPager(Model,page=> Url.Action("DonHang", new {page=page}),new X.PagedList.Web.Common.PagedListRenderOptions(){
-    LiElementClasses=new List<string>{"page-item"},
-    PageClasses=new List<string>{"page-link"}*@
+@Html.PagedListPager(Model, page => Url.Action("DonHang", new { page = page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string> { "page-item" },
+    PageClasses = new List<string> { "page-link" }
+})

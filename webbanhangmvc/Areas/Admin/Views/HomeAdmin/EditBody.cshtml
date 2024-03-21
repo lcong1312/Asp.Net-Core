@@ -1,0 +1,14 @@
+﻿@using webbanhangmvc.Models
+@model LayoutViewModel
+
+<h2>Chỉnh sửa Body</h2>
+
+<form asp-action="EditBody" method="post">
+    <div class="form-group">
+        <label for="BodyContent">Nội dung body:</label><br />
+        <textarea id="BodyContent" name="Body" rows="20" cols="200">@Html.Raw(Model.Body)</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    </div>
+</form>

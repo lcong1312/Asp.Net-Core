@@ -1,0 +1,244 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = webbanhangmvc
+build_property.RootNamespace = webbanhangmvc
+build_property.ProjectDir = D:\web\asp2\webbanhangmvc\webbanhangmvc\webbanhangmvc\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\web\asp2\webbanhangmvc\webbanhangmvc\webbanhangmvc
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/DanhMucSanPham.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXERhbmhNdWNTYW5QaGFtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/DonHang.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXERvbkhhbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/EditBody.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXEVkaXRCb2R5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/EditFooter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXEVkaXRGb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/EditLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXEVkaXRMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/LoginAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXExvZ2luQWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/NguoiDung.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXE5ndW9pRHVuZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/NhanVien.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXE5oYW5WaWVuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/QuanLyBaiDang.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFF1YW5MeUJhaURhbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/SuaBaiDang.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFN1YUJhaURhbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/SuaDonHang.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFN1YURvbkhhbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/SuaNguoiDung.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFN1YU5ndW9pRHVuZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/SuaNhanVien.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFN1YU5oYW5WaWVuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/SuaSanPham.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFN1YVNhblBoYW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/TaoBaiDang.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFRhb0JhaURhbmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/ThemNguoiDung.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFRoZW1OZ3VvaUR1bmcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/ThemNhanVien.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFRoZW1OaGFuVmllbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/ThemSanPhamMoi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFRoZW1TYW5QaGFtTW9pLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/ViewBody.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFZpZXdCb2R5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/ViewFooter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFZpZXdGb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/HomeAdmin/ViewHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZUFkbWluXFZpZXdIZWFkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Acces/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Acces/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Cart/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Cart/Checkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDaGVja291dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Cart/Fail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxGYWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Cart/PaymentFail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxQYXltZW50RmFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Cart/PaymentSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxQYXltZW50U3VjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Cart/qrDataURL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxxckRhdGFVUkwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Cart/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxTdWNjZXNzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/CamNang.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYW1OYW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/ChiTietSanPham.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaGlUaWV0U2FuUGhhbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/Lienhe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMaWVuaGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/ProductDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9kdWN0RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/sanphamchietkhau.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxzYW5waGFtY2hpZXRraGF1LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/SanPhamTheoLoai.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTYW5QaGFtVGhlb0xvYWkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/Tintuc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaW50dWMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Home/TourDuLich.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUb3VyRHVMaWNoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Search/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhcmNoXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Search/ProductDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhcmNoXFByb2R1Y3REZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Search/SanPhamTheoLoai.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhcmNoXFNhblBoYW1UaGVvTG9haS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/Components/CartWidgt/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ2FydFdpZGd0XERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/Components/LoaiSpMenu/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTG9haVNwTWVudVxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/Components/LocSp/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTG9jU3BcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/Components/ProductListView/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcUHJvZHVjdExpc3RWaWV3XERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/PartialSanPham.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxTYW5QaGFtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/_LayoutIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/_LayoutOgani.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRPZ2FuaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web/asp2/webbanhangmvc/webbanhangmvc/webbanhangmvc/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-n45jupwwi4

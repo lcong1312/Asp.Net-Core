@@ -19,5 +19,4 @@ public partial class TUserKh
     public string? DiaChi { get; set; }
 
     public virtual ICollection<TKhachHang> TKhachHangs { get; } = new List<TKhachHang>();
-
 }

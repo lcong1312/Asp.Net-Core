@@ -1,0 +1,40 @@
+﻿@using webbanhangmvc.Models
+@using X.PagedList.Mvc.Core
+@model IEnumerable<TDanhMucSp>
+
+@*@foreach (var product in Model)
+                        {
+                            <div class="latest-prdouct__slider__item">
+                                <a href="#" class="latest-product__item">
+                                    <div class="latest-product__item__pic">
+                                        <img src="@Url.Content("../ProductsImages/" + product.AnhDaiDien)" alt="">
+                                    </div>
+                                    <div class="latest-product__item__text">
+                                        <h6>@product.TenSp</h6>
+                                        <span>@product.GiaLonNhat</span>
+                                    </div>
+                                </a>
+                            </div>
+                        }*@
+
+
+                        
+@foreach (var product in Model)
+                        {
+                                                        <div class="col-lg-4">
+                                    <div class="product__discount__item">
+                                        <div class="product__discount__item__pic set-bg"
+                                             data-setbg ="@Url.Content("../ProductsImages/" + product.AnhDaiDien)" alt="">
+                                            <div class="product__discount__percent">@product.ChietKhau%</div>
+                                            <ul class="product__item__pic__hover">
+                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                                <li><a href="@Url.Action("AddToCart", "Cart", new { productId = product.MaSp })"><i class="fa fa-shopping-cart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__discount__item__text ellipsis">
+                                            <h5><a asp-controller="Home" asp-action="ProductDetail" asp-route-maSp="@product.MaSp">@product.TenSp</a></h5>
+                                            <div class="product__item__price">@product.GiaLonNhatFomat <span>@product.GiaNhoNhatFomat</span></div>
+                                        </div>
+                                    </div>
+                                </div>}

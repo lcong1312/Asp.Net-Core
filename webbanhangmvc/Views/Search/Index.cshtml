@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="../1LayoutOgani/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="../1LayoutOgani/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../1LayoutOgani/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../1LayoutOgani/css/style06.css" type="text/css">
+    <link rel="stylesheet" href="../1LayoutOgani/css/style13.css" type="text/css">
     <link rel="shortcut icon" href="../../LayoutAdmin/assets/images/favicon1.png" />
 
 </head>
@@ -37,16 +37,15 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="../1LayoutOgani/img/logo0.png" alt=""></a>
+            <a href="@Url.Action("Index","Home")"><img src="../1LayoutOgani/img/logo0.png" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> </a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i></a></li>
+                <li><a href="@Url.Action("Cart","Cart")"><i class="fa fa-shopping-bag"></i> </a></li>
             </ul>
             
         </div>
@@ -67,16 +66,16 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="https://localhost:7227/Home/Index">Trang Chủ</a></li>
+                <li class="active"><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
                 <li><a href="#">Trang</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="@Url.Action("RandomProductDetail", "Home")">Chi Tiết Cửa Hàng</a></li>
-                        <li><a  asp-controller="Home" asp-action="Giohang">>Giỏ Hàng Shop</a></li>
-                        <li><a href="./checkout.html">Kiểm Tra Lại</a></li>
+                        <li><a asp-controller="Home" asp-action="ProductDetail">Chi Tiết Cửa Hàng</a></li>
+                        <li><a  asp-controller="Cart" asp-action="Cart">Giỏ Hàng Shop</a></li>
+                        <li><a href="@Url.Action("KiemTraDon","Cart")">Kiểm Tra Đơn Hàng</a></li>
                         
                     </ul>
                 </li>
-                <li><a asp-controller="Home" asp-action="Blog">Tin Tức</a></li>
+                <li><a asp-controller="Home" asp-action="Tintuc">Tin Tức</a></li>
                 <li><a  asp-controller="Home" asp-action="Lienhe">>Liên Hệ</a></li>
             </ul>
         </nav>
@@ -89,8 +88,8 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Miễn Phí Vận Chuyển Các Đơn Từ</li>
+                <li><i class="fa fa-envelope"></i> Valiking010@gmail.com</li>
+                
             </ul>
         </div>
     </div>
@@ -132,12 +131,12 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="https://localhost:7227/Home/Index">Trang Chủ</a></li>
+                            <li class="active"><a href="@Url.Action("Index","Home")">Trang Chủ</a></li>
                             <li><a href="#">Trang</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="@Url.Action("RandomProductDetail", "Home")" >Chi Tiết Của Hàng</a></li>
                                     <li><a asp-controller="Home" asp-action="Giohang">Giỏ Hàng</a></li>
-                                    <li><a asp-controller="Home" asp-action="Thongtin">Kiểm Tra Lại</a></li>
+                                    <li><a asp-controller="Cart" asp-action="KiemTraDon">Kiểm Tra Đơn Hàng</a></li>
                                 </ul>
                             </li>
                             <li><a asp-controller="Home" asp-action="TinTuc" >Tin Tức</a></li>
@@ -176,7 +175,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">@product.TenSp</h5>
                                     <p class="card-text">Cân Nặng: @product.CanNang</p>
-                                    <p class="card-text"><strong>Giá Sản Phẩm:</strong> @product.GiaLonNhat</p>
+                                    <p class="card-text"><strong>Giá Sản Phẩm:</strong> @product.GiaLonNhatFomat</p>
                                     <a asp-controller="Home" asp-action="ProductDetail" asp-route-maSp="@product.MaSp">Chi Tiết Sản Phẩm</a>
                                 </div>
                             </div>

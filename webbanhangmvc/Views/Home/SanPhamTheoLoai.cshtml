@@ -6,11 +6,17 @@
 @using webbanhangmvc.Models;
 @using X.PagedList.Mvc.Core;
 @model X.PagedList.IPagedList<TDanhMucSp>
-@*    @model List<TDanhMucSp>*@
+
+@*@foreach(var item in Model)
+{
+    @await Component.InvokeAsync("ProductListView", item)
+
+}*@
 @foreach(var item in Model)
 {
      @await Html.PartialAsync("PartialSanPham", item)
 }
+
 <div class="product__pagination">
     @for (int i = 1; i <= Model.PageCount; i++)
     {

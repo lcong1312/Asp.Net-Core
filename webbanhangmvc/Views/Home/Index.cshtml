@@ -7,18 +7,31 @@
 @using webbanhangmvc.Models;
 
 @model X.PagedList.IPagedList<TDanhMucSp>
+
 @foreach(var item in Model)
 {
     @await Html.PartialAsync("PartialSanPham", item)
 }
 
 
-<div class="product__pagination">
-    @for (int i = 1; i <= Model.PageCount; i++)
+<div class="product__pagination" id="paginationControls">
+    @if (ViewBag.CurrentPageNumber > 1)
+    {
+        <a href="@Url.Action("Index", new { page = ViewBag.CurrentPageNumber - 1 })">&laquo;</a>
+    }
+    
+    @for (int i = ViewBag.StartPage; i <= ViewBag.EndPage; i++)
     {
         var cssClass = i == ViewBag.CurrentPageNumber ? "current" : "";
         <a href="@Url.Action("Index", new { page = i })" class="@cssClass">@i</a>
     }
+
+    @if (ViewBag.CurrentPageNumber < ViewBag.TotalPages)
+    {
+        <a href="@Url.Action("Index", new { page = ViewBag.CurrentPageNumber + 1 })">&raquo;</a>
+    }
 </div>
+
+
 
 

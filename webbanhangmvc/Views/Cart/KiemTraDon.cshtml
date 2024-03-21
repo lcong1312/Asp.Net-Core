@@ -1,0 +1,95 @@
+﻿@using webbanhangmvc.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<webbanhangmvc.ViewModels.OrderViewModel>
+@{
+    ViewData["Title"] = "Đơn Hàng";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ValiKing Admin | Template</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../LayoutAdmin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../LayoutAdmin/assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../../LayoutAdmin/assets/css/style2.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="../../LayoutAdmin/assets/images/favicon1.png" />
+  </head>
+  <body>
+      <h3>Kiểm Tra Đơn Hàng</h3>
+
+@if (!Model.Any())
+{
+    <p class="text-center">Không có đơn hàng nào.</p>
+} 
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã Hóa Đơn</th>
+                <th>Tên Khách Hàng</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Ngày Bán</th>
+                <th>Địa Chỉ</th>
+                <th>Số Lượng</th>
+                <th>Phương Thức Thanh Toán</th>
+                <th>Xử Lý Đơn hàng</th>
+                <th>Thành Tiền</th>
+                <th>Tình Trạng</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr class="@((order.MaHoaDon % 2 == 0) ? "table-primary" : "table-success")">
+                    <td>@order.MaHoaDon</td>
+                    <td>@order.TenKh</td>
+                    <td>@order.TenSp</td>
+                    <td>@order.NgayBan.ToString("dd/MM/yyyy")</td>
+                    <td>@order.DiaChi</td>
+                    <td>@order.Soluong</td>
+                    <td>@order.Phuongthuctt</td>
+                    <td>@order.Xylydonhang</td>
+                    <td>@String.Format("{0:#,##0}",@order.ThanhTien.ToString()) VNĐ.</td>
+                    <td>@order.TinhTrang</td>
+                    <td>
+                        @if (order.TinhTrang != "Hủy Đơn")
+                        {
+                            <a asp-controller="Cart" asp-action="HuyDon" asp-route-mahoadon="@order.MaHoaDon">Hủy Đơn</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<p>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay về trang chủ</a>
+</p>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../LayoutAdmin/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../LayoutAdmin/assets/js/off-canvas.js"></script>
+    <script src="../../LayoutAdmin/assets/js/hoverable-collapse.js"></script>
+    <script src="../../LayoutAdmin/assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <!-- End custom js for this page -->
+  </body>
+</html>

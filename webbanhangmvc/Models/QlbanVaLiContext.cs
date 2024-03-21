@@ -52,12 +52,17 @@ public partial class QlbanVaLiContext : DbContext
 
     public virtual DbSet<DonHang> DonHangs { get; set; }
     public virtual DbSet<Post> Posts { get; set; }
+    public virtual DbSet<Comment> Comments { get; set; }
+    public virtual DbSet<TruyCap> TruyCaps { get; set; }
+    public virtual DbSet<LayoutContent> LayoutContents { get; set; }
+    public virtual DbSet<LayoutViewModel> LayoutViewModels { get; set; }
+    public virtual DbSet<GiftCode> GiftCodes { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-PC;Initial Catalog=QLBanVaLi;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-
+        => optionsBuilder.UseSqlServer("Data Source=SQL8004.site4now.net;Initial Catalog=db_aaaaff_qlbanvali;User ID=db_aaaaff_qlbanvali_admin;Password=Azgame123@;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+    //"Data Source=SQL8004.site4now.net;Initial Catalog=db_aaaaff_qlbanvali;User ID=db_aaaaff_qlbanvali_admin;Password=Azgame123@;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TAnhChiTietSp>(entity =>
@@ -87,6 +92,59 @@ public partial class QlbanVaLiContext : DbContext
             entity.HasKey(e => new { e.MaHoaDon });
 
             entity.ToTable("Donhang");
+
+
+        });
+        modelBuilder.Entity<LayoutViewModel>(entity =>
+        {
+            entity.HasKey(e => new { e.Id });
+
+            entity.ToTable("LayoutViewModel");
+
+
+        });
+        modelBuilder.Entity<GiftCode>(entity =>
+        {
+            entity.HasKey(e => new { e.ID });
+
+            entity.ToTable("GiftCode");
+
+
+        });
+        modelBuilder.Entity<LayoutContent>(entity =>
+        {
+            entity.HasKey(e => new { e.Id });
+
+            entity.ToTable("LayoutContent");
+
+
+        });
+        modelBuilder.Entity<TruyCap>(entity =>
+        {
+            entity.HasKey(e => new { e.ID });
+
+            entity.ToTable("TruyCap");
+
+
+        });
+
+        modelBuilder.Entity<Comment>(entity =>
+        {
+            entity.HasKey(e => new { e.Id,e.MaSp });
+
+            entity.ToTable("Comment");
+
+            entity.Property(e => e.MaSp)
+                .HasMaxLength(25)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("MaSP");
+
+            //entity.HasOne(d => d.MaSpNavigation).WithMany(p => p.Comments)
+            //    .HasForeignKey(d => d.MaSp)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_Comment_tDanhMucSP");
+
         });
 
         modelBuilder.Entity<Post>(entity =>

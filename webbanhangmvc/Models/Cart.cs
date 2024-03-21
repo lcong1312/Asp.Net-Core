@@ -28,18 +28,23 @@ namespace webbanhangmvc.Models
         {
             return (decimal)lines.Sum(e => e.Product?.GiaLonNhat * e.Quantity);
         }
+
         public decimal ComputeQuantityValue()
         {
             return (decimal)lines.Sum(e => e.Quantity);
         }
-        public string GetSp(string Sp)
+
+
+
+        public string GetSp()
         {
-            CartLine line = lines.FirstOrDefault(p => p.Product.TenSp == Sp);
-            if(line !=null)
-            {
-                return line.Product.TenSp;
-            }
-            return Sp;
+            CartLine line = lines.FirstOrDefault();
+            return line?.Product.TenSp ?? string.Empty;
+        }
+
+        public List<string> Getsp()
+        {
+            return lines.Select(line => line.Product.TenSp).ToList();
         }
 
         public string GetProductName(string name)
@@ -58,6 +63,7 @@ namespace webbanhangmvc.Models
         {
             return paymentMethod;
         }
+
         public void Clear() => lines.Clear();
     }
     public class CartLine
