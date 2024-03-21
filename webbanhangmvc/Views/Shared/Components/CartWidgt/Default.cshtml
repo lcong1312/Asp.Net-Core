@@ -1,0 +1,21 @@
+﻿@model Cart
+                        <div class="header__cart">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            <li><a asp-controller="Cart" asp-action="Cart"><i class="fa fa-shopping-bag"></i> <span>@Model?.ComputeQuantityValue()</span></a></li>
+                        </ul>
+                        <div class="header__top__right__auth">
+    @if (ViewBag.UserName == null)
+{
+    <a asp-controller="Acces" asp-action="Login"><i class="fa fa-user"></i> Đăng Nhập</a>
+}
+else
+{
+<form asp-controller="Home" asp-action="Logout" method="post" id="logoutForm" class="form-inline">
+    <button type="submit" class="btn btn-link"><u>Đăng xuất</u></button>
+</form>
+}
+
+</div>
+                    </div>
+                    

@@ -1,0 +1,40 @@
+﻿@using webbanhangmvc.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "NguoiDung";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Danh sách Khách Hàng</h2>
+<p>
+    <a asp-action="ThemNguoiDung">Thêm Khách Hàng</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Tên Khách</th>
+            <th>Ngày Sinh</th>
+            <th>Điện Thoại</th>
+            <th>Địa Chỉ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var use in Model)
+        {
+            <tr>
+                <td>@use.UsernameKh</td>
+                <td type="password" >@use.Password</td>
+                <td >@use.TenKhachHang</td>
+                <td>@use.NgaySinh
+                </td>
+                <td>@use.SoDienThoai1</td>
+                <td>@use.DiaChi</td>
+                <td>
+                    <a href="@Url.Action("SuaNguoiDung", "HomeAdmin", new { id = use.UsernameKh })">Sửa</a> |
+                    <a href="@Url.Action("XoaNguoiDung", "HomeAdmin", new { id = use.UsernameKh })">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

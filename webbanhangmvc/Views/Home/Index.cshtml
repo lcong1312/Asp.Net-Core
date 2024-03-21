@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_LayoutOgani.cshtml";
+}
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using webbanhangmvc.Models;
+
+@model X.PagedList.IPagedList<TDanhMucSp>
+@foreach(var item in Model)
+{
+    @await Html.PartialAsync("PartialSanPham", item)
+}
+
+
+<div class="product__pagination">
+    @for (int i = 1; i <= Model.PageCount; i++)
+    {
+        var cssClass = i == ViewBag.CurrentPageNumber ? "current" : "";
+        <a href="@Url.Action("Index", new { page = i })" class="@cssClass">@i</a>
+    }
+</div>
+
+

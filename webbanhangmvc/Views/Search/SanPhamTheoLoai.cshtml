@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "SanPhamTheoLoai";
+    Layout = "~/Views/Shared/_LayoutOgani.cshtml";
+}
+@using webbanhangmvc.Models;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TDanhMucSp>
+@*    @model List<TDanhMucSp>*@
+@foreach(var item in Model)
+{
+     @await Html.PartialAsync("PartialSanPham", item)
+}
+
+<div class="product__pagination">
+    @for (int i = 1; i <= Model.PageCount; i++)
+    {
+        var cssClass = i == ViewBag.CurrentPageNumber ? "current" : "";
+        <a href="@Url.Action("SanPhamTheoLoai", new { maloai=ViewBag.maloai, page=i })" class="@cssClass">@i</a>
+    }
+</div>
+
+

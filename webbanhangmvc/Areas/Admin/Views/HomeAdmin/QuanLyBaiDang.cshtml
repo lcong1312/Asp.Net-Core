@@ -1,0 +1,42 @@
+﻿@using webbanhangmvc.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "QuanLyBaiDang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2>Danh sách bài đăng</h2>
+<p>
+    <a asp-action="TaoBaiDang">Thêm Bài Đăng</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Tiêu đề</th>
+            <th>Nội dung</th>
+            <th>Ảnh</th>
+            <th>Ngày Đăng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Id</td>
+                <td>@post.Title</td>
+                <td  style="display: none;" >@post.Content</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(post.ImageUrl))
+                    {
+                        <img src="~/ProductsImages/@post.ImageUrl" alt="Image" style="max-width: 100px; max-height: 100px;" />
+                    }
+                </td>
+                <td>@post.CreatedAt</td>
+                <td>
+                    <a href="@Url.Action("SuaBaiDang", "HomeAdmin", new { id = post.Id })">Sửa</a> |
+                    <a href="@Url.Action("XoaBaiDang", "HomeAdmin", new { id = post.Id })">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "DonHang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using webbanhangmvc.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<h3>Đơn Hàng Đã Đặt Thành Công</h3>
+
+<p>@TempData["Message"]</p>
+<table class="table">
+    <thead>
+        <tr class ="table-warning">
+            <th>
+                Mã Đơn
+            </th>
+            <th>
+                Tên Khách
+            </th>
+            <th>
+                Tên Sp
+            </th>
+            <th>
+                Ngày Đặt
+            </th>
+            <th>
+                Số Lượng
+            </th>
+            <th>
+                Thành Tiền
+            </th>
+            <th>
+                Địa Chỉ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+            string @cls = "table-success";
+        }
+@foreach (var item in Model) 
+           {
+            i = i + 1;
+            cls = "table-success";
+            if (i % 2 == 0)
+            {
+                cls="table-primary";
+            }
+            <tr class ="@cls">
+            <td>
+               @item.MaHoaDon
+            </td>
+            <td>
+                @item.TenKh
+            </td>
+            <td>
+                @item.TenSp
+            </td>
+            <td>
+                @item.NgayBan
+            </td>
+            <td>
+               @item.Soluong
+            </td>
+            <td>
+               @item.ThanhTien
+            </td>
+            <td>
+               @item.DiaChi
+            </td>
+
+            <td>
+                 <a asp-action="SuaDonHang" asp-route-Mahoadon="@item.MaHoaDon">Sửa</a> |
+                <a asp-action="XoaDonHang" asp-route-Mahoadon="@item.MaHoaDon">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@*@Html.PagedListPager(Model,page=> Url.Action("DonHang", new {page=page}),new X.PagedList.Web.Common.PagedListRenderOptions(){
+    LiElementClasses=new List<string>{"page-item"},
+    PageClasses=new List<string>{"page-link"}*@

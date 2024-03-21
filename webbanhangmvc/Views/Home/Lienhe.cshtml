@@ -1,0 +1,311 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="VaLiKing Store">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VaLiKing Store | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../1LayoutOgani/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../1LayoutOgani/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../1LayoutOgani/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../1LayoutOgani/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../1LayoutOgani/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../1LayoutOgani/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../1LayoutOgani/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../1LayoutOgani/css/style06.css" type="text/css">
+    <link rel="shortcut icon" href="../../LayoutAdmin/assets/images/favicon1.png" />
+
+</head>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="#"><img src="../1LayoutOgani/img/logo0.png" alt=""></a>
+        </div>
+        <div class="humberger__menu__cart">
+            <ul>
+                <li><a href="#"><i class="fa fa-heart"></i> </a></li>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i></a></li>
+            </ul>
+            
+        </div>
+        <div class="humberger__menu__widget">
+            @*<div class="header__top__right__language">
+                <img src="../1LayoutOgani/img/language0.png" alt="">
+                <div>Tiếng Việt</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="#">Tiếng Việt</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </div>*@
+            <div class="header__top__right__auth">
+                @*<a href="#"><i class="fa fa-user"></i> Login</a>*@
+                @*<a asp-controller="Acces" asp-action="Logout" ><i class="fa fa-user"></i> Logout</a>*@
+            </div>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href="https://localhost:7227/Home/Index">Trang Chủ</a></li>
+                <li><a href="#">Trang</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a asp-controller="Home" asp-action="ProductDetail">Chi Tiết Cửa Hàng</a></li>
+                        <li><a  asp-controller="Home" asp-action="Giohang">>Giỏ Hàng Shop</a></li>
+                        <li><a href="./checkout.html">Kiểm Tra Lại</a></li>
+                        
+                    </ul>
+                </li>
+                <li><a asp-controller="Home" asp-action="Blog">Tin Tức</a></li>
+                <li><a  asp-controller="Home" asp-action="Lienhe">>Liên Hệ</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                <li>Miễn Phí Vận Chuyển Các Đơn Từ</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><a href="https://mail.google.com/mail/u/0/#inbox?compose=jrjtWvNPGmnWVCTgksjLjHdmWmRrNLCVpLHJlmhXDvqWlDSJbnprvbLhPBqgWZdQVkTxRhhW"><i class="fa fa-envelope"></i></a> VaLiKing010@gmail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="https://web.facebook.com/LEVIETCONG.CLONE1"><i class="fa fa-facebook"></i></a>
+                                <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>
+                                <a href="https://www.pinterest.com"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="../1LayoutOgani"><img src="../1LayoutOgani/img/logo0.png" alt="" ></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="https://localhost:7227/Home/Index">Trang Chủ</a></li>
+                            <li><a href="#">Trang</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="@Url.Action("RandomProductDetail", "Home")" >Chi Tiết Của Hàng</a></li>
+                                    <li><a asp-controller="Cart" asp-action="Cart">Giỏ Hàng</a></li>
+                                    <li><a asp-controller="Cart" asp-action="Checkout">Kiểm Tra Lại Hàng</a></li>
+                                </ul>
+                            </li>
+                            <li><a asp-controller="Home" asp-action="TinTuc" >Tin Tức</a></li>
+                            <li><a asp-controller="Home" asp-action="Lienhe" >Liên Hệ</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+@await Component.InvokeAsync("CartWidgt") 
+
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+
+            </div>
+        </div>
+    </header>
+    
+    <!-- Header Section End -->
+        <section class="contact spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_phone"></span>
+                        <h4>Điện Thoại</h4>
+                        <p>+84 334.333.196</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_pin_alt"></span>
+                        <h4>Địa Chỉ</h4>
+                        <p>Phố Long Biên 1, Ngọc Lâm, Long Biên, Hà Nội</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_clock_alt"></span>
+                        <h4>Thời Gian Mở Cửa</h4>
+                        <p>08:00 am to 23:00 pm</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                    <div class="contact__widget">
+                        <span class="icon_mail_alt"></span>
+                        <h4>Email</h4>
+                        <p>ValiKing010@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.670234548368!2d105.86506167467282!3d21.045876787191474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abd17b1c8a87%3A0x4dd1f384b8005352!2zUC4gTG9uZyBCacOqbiAxLCBOZ-G7jWMgTMOibSwgTG9uZyBCacOqbiwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2sus!4v1708574737208!5m2!1svi!2sus" 
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-inside">
+            <i class="icon_pin"></i>
+            <div class="inside-widget">
+                <h4>Hà Nội</h4>
+                <ul>
+                    <li>Phone: +84 334.333.196</li>
+                    <li>Add: Phố Long Biên 1, Ngọc Lâm, Long Biên, Hà Nội</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-form spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact__form__title">
+                        <h2>Lời Nhắn</h2>
+                    </div>
+                </div>
+            </div>
+            <form action="#">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" placeholder="Tên Của Bạn">
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <input type="text" placeholder="Email Của Bạn">
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <textarea placeholder="Lời Nhắn Của Bạn"></textarea>
+                        <button type="submit" class="site-btn">Gửi</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<!-- Footer Section Begin -->
+     <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="../1LayoutOgani/img/logo0.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: Phố Long Biên 1, Ngọc Lâm, Hà Nội </li>
+                            <li>Phone: +84 34.333.196 </li>
+                            <li>Email: VaLiKing010@gmail.com </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Liên Kết Hữu Ích</h6>
+                        <ul>
+                            <li><a href="#">Về Chúng Tôi</a></li>
+                            <li><a href="#">Về Cửa Hàng Chúng Tôi</a></li>
+                            <li><a href="#">Mua Sắm An Toàn</a></li>
+                            <li><a href="#">Thông Tin Giao Hàng</a></li>
+                            <li><a href="#">Chính Sách Bảo Mật</a></li>
+                            <li><a href="#">Sơ Đồ Web</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Chúng Tôi Là Ai</a></li>
+                            <li><a href="#">Dịch Vụ Của Chúng Tôi</a></li>
+                            <li><a href="#">Dự Án</a></li>
+                            <li><a href="#">Sự Tiếp Xúc</a></li>
+                            <li><a href="#">Sáng Kiến</a></li>
+                            <li><a href="#">Ý Kiến</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Tham Gia Bản Tin Của Chúng Tôi </h6>
+                        <p>Nhận thông tin cập nhật qua E-Mail về cửa hàng mới nhất và các ưu đãi đặc biệt</p>
+                        <form action="#">
+                            <input type="text" placeholder="Nhập Thư Của Bạn">
+                            <button type="submit" class="site-btn">Đăng Ký</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="https://web.facebook.com/LEVIETCONG.CLONE1"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+                            <a href="https://twitter.com/?lang=vi"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.pinterest.com/"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+   &copy; Valiking Company Since <script>document.write(new Date().getFullYear());</script> | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__payment"><img src="../1LayoutOgani/img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+       <script src="../1LayoutOgani/js/jquery-3.3.1.min.js"></script>
+    <script src="../1LayoutOgani/js/bootstrap.min.js"></script>
+    <script src="../1LayoutOgani/js/jquery.nice-select.min.js"></script>
+    <script src="../1LayoutOgani/js/jquery-ui.min.js"></script>
+    <script src="../1LayoutOgani/js/jquery.slicknav.js"></script>
+    <script src="../1LayoutOgani/js/mixitup.min.js"></script>
+    <script src="../1LayoutOgani/js/owl.carousel.min.js"></script>
+    <script src="../1LayoutOgani/js/main.js"></script>
+
+
+
+</body>
+
+</html>

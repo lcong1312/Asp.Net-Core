@@ -1,0 +1,52 @@
+﻿@using webbanhangmvc.Models;
+@model IEnumerable<TLoaiSp>
+
+    <ul>
+        <li class="active" data-filter="*">Tất Cả</li>
+        @foreach(var item in Model)
+        {
+            
+        var  getUrl= "https://localhost:7227/api/productapi/" + item.MaLoai;
+        <li><a style ="cursor:pointer" onclick="Showlocsp('@getUrl')">@item.Loai </a></li>
+        }
+    </ul>
+                <script>
+                    function Showlocsp(getUrl){
+                        var str='';
+                        $.ajax({
+                            type: 'GET',
+                            url: getUrl,
+                            dataType: 'json',
+                            success:function(data){
+                                $.each(data, function(key, val){
+                                    str += '<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" >';
+                                    str += '<div class="featured__item" >';
+                                    str += '<div class="featured__item__pic set-bg" data-setbg=\"';
+                                    var linkImage = "../ProductsImages/" +$.trim(val.anhDaiDien);
+                                    str += linkImage;
+                                    str += '\" style = "background-image: url(&quot;';
+                                    str += linkImage;
+                                    str += '&quot;)">';
+                                    str += '<ul class="featured__item__pic__hover" >';
+                                    str += '<li><a href="#" > <i class="fa fa-heart"></i></a></li>';
+                                    str += '<li><a href="#" > <i class="fa fa-retweet"></i></a></li>';
+                                    str += '<li><a href="/Cart/AddToCart?productId=' + val.maSp + '"><i class="fa fa-shopping-cart"></i></a></li>';
+                                    str += '</ul></div>';
+                                    str += '<div class="featured__item__text" >';
+                                    str += '<h6><a href=\"/Home/ProductDetail?maSp=';
+                                    str += $.trim(val.tenSp);
+                                    str += '\">';
+                                    str += $.trim(val.tenSp);
+                                    str += '</a></h6 ><h5>';
+                                    str += val.giaNhoNhat.toString();
+                                    str += '</h5> </div></div></div>';
+                                    //str += '<p>'+val.tenSp+'</p>'
+                                });
+                                $('#displayProduct').html(str);
+                            },
+                            Errror: function(xhr){
+                                alert(xhr.reponseText)
+                            }
+                        });
+                    }
+                </script>
